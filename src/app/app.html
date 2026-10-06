@@ -1,0 +1,31 @@
+<div
+  class="progress"
+  [class.active]="activity.inFlight() > 0"
+  role="progressbar"
+  aria-label="Loading"
+  [attr.aria-busy]="activity.inFlight() > 0"
+></div>
+
+<header class="site-header">
+  <a routerLink="/users" class="brand">HttpClient <span>Demo</span></a>
+  <label class="toggle">
+    <input type="checkbox" [checked]="chaos.enabled()" (change)="chaos.toggle()" />
+    <span>Simulate flaky network</span>
+  </label>
+</header>
+
+@if (chaos.enabled()) {
+  <p class="chaos-note">
+    About half of all requests now fail with a simulated <code>503</code>. GET requests are retried
+    automatically; watch the HTTP log.
+  </p>
+}
+
+<div class="layout">
+  <main>
+    <router-outlet />
+  </main>
+  <aside>
+    <app-http-log />
+  </aside>
+</div>

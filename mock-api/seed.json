@@ -1,0 +1,222 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Priya Raman",
+      "username": "priya",
+      "email": "priya.raman@example.com",
+      "address": {
+        "city": "Chennai"
+      },
+      "company": {
+        "name": "Kaveri Labs"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Lukas Becker",
+      "username": "lukas",
+      "email": "lukas.becker@example.com",
+      "address": {
+        "city": "Berlin"
+      },
+      "company": {
+        "name": "Nordlicht GmbH"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Sofia Marín",
+      "username": "sofia",
+      "email": "sofia.marin@example.com",
+      "address": {
+        "city": "Valencia"
+      },
+      "company": {
+        "name": "Azahar Studio"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Kenji Watanabe",
+      "username": "kenji",
+      "email": "kenji.watanabe@example.com",
+      "address": {
+        "city": "Osaka"
+      },
+      "company": {
+        "name": "Hikari Systems"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Amara Okafor",
+      "username": "amara",
+      "email": "amara.okafor@example.com",
+      "address": {
+        "city": "Lagos"
+      },
+      "company": {
+        "name": "Baobab Data"
+      }
+    },
+    {
+      "id": "6",
+      "name": "Elena Rossi",
+      "username": "elena",
+      "email": "elena.rossi@example.com",
+      "address": {
+        "city": "Turin"
+      },
+      "company": {
+        "name": "Mole Analytics"
+      }
+    },
+    {
+      "id": "7",
+      "name": "Daniel Kim",
+      "username": "daniel",
+      "email": "daniel.kim@example.com",
+      "address": {
+        "city": "Seoul"
+      },
+      "company": {
+        "name": "Hanok Cloud"
+      }
+    },
+    {
+      "id": "8",
+      "name": "Noah Williams",
+      "username": "noah",
+      "email": "noah.williams@example.com",
+      "address": {
+        "city": "Melbourne"
+      },
+      "company": {
+        "name": "Southern Cross IT"
+      }
+    },
+    {
+      "id": "9",
+      "name": "Aisha Khan",
+      "username": "aisha",
+      "email": "aisha.khan@example.com",
+      "address": {
+        "city": "Hyderabad"
+      },
+      "company": {
+        "name": "Charminar Tech"
+      }
+    },
+    {
+      "id": "10",
+      "name": "Mateo Silva",
+      "username": "mateo",
+      "email": "mateo.silva@example.com",
+      "address": {
+        "city": "Lisbon"
+      },
+      "company": {
+        "name": "Tejo Digital"
+      }
+    },
+    {
+      "id": "11",
+      "name": "Freya Johansson",
+      "username": "freya",
+      "email": "freya.johansson@example.com",
+      "address": {
+        "city": "Stockholm"
+      },
+      "company": {
+        "name": "Norrsken AB"
+      }
+    },
+    {
+      "id": "12",
+      "name": "Omar Haddad",
+      "username": "omar",
+      "email": "omar.haddad@example.com",
+      "address": {
+        "city": "Amman"
+      },
+      "company": {
+        "name": "Petra Works"
+      }
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "Typed HTTP responses in Angular",
+      "body": "Using generics with HttpClient.get<T>() keeps templates honest and catches API drift at compile time."
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "Why switchMap for search",
+      "body": "Cancelling the previous request when the user keeps typing avoids out-of-order results."
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "title": "Interceptors as middleware",
+      "body": "Logging, auth headers and retries belong in one place, not in every service."
+    },
+    {
+      "id": "4",
+      "userId": "2",
+      "title": "HttpParams are immutable",
+      "body": "Every set() returns a new instance; chain them or you will lose parameters."
+    },
+    {
+      "id": "5",
+      "userId": "3",
+      "title": "Optimistic UI updates",
+      "body": "Update the view first, roll back if the server says no. Users feel the difference."
+    },
+    {
+      "id": "6",
+      "userId": "4",
+      "title": "Retry with backoff",
+      "body": "Retry idempotent requests on 5xx and network errors, never on 4xx."
+    },
+    {
+      "id": "7",
+      "userId": "4",
+      "title": "HttpContext tokens",
+      "body": "Per-request flags let one call opt out of global interceptor behaviour."
+    },
+    {
+      "id": "8",
+      "userId": "5",
+      "title": "Pagination envelopes",
+      "body": "Return total pages alongside data so the client never has to guess."
+    },
+    {
+      "id": "9",
+      "userId": "6",
+      "title": "Testing with HttpTestingController",
+      "body": "Flush fake responses and verify no unexpected requests were made."
+    },
+    {
+      "id": "10",
+      "userId": "7",
+      "title": "Zoneless Angular",
+      "body": "Signals drive change detection; no more Zone.js monkey patching."
+    },
+    {
+      "id": "11",
+      "userId": "9",
+      "title": "Mock APIs with json-server",
+      "body": "A JSON file becomes a full REST API in seconds, perfect for front-end prototyping."
+    },
+    {
+      "id": "12",
+      "userId": "10",
+      "title": "Error messages users understand",
+      "body": "Map status codes to plain language and keep stack traces on the server."
+    }
+  ]
+}

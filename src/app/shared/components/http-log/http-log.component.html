@@ -1,0 +1,32 @@
+<section class="card log" aria-labelledby="http-log-title">
+  <header>
+    <h2 id="http-log-title">HTTP log</h2>
+    <button
+      type="button"
+      class="link"
+      (click)="activity.clear()"
+      [disabled]="activity.entries().length === 0"
+    >
+      Clear
+    </button>
+  </header>
+  @if (activity.entries().length === 0) {
+    <p class="muted">Requests will appear here as you use the app.</p>
+  }
+  <ol>
+    @for (e of activity.entries(); track e.id) {
+      <li [class.fail]="e.ok === false" [class.pending]="e.status === null">
+        <span class="method" [attr.data-method]="e.method">{{ e.method }}</span>
+        <span class="url" [title]="e.url">{{ shortUrl(e.url) }}</span>
+        <span class="status">
+          @if (e.status === null) {
+            …
+          } @else {
+            {{ e.status || 'ERR' }}
+          }
+        </span>
+        <span class="ms muted">{{ e.durationMs === null ? '' : e.durationMs + ' ms' }}</span>
+      </li>
+    }
+  </ol>
+</section>

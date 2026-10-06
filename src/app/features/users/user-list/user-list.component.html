@@ -1,0 +1,69 @@
+<section class="card">
+  <header class="card-header">
+    <h2>Users</h2>
+    @if (page(); as p) {
+      <span class="muted">{{ p.items }} {{ p.items === 1 ? 'user' : 'users' }}</span>
+    }
+  </header>
+
+  <label for="search" class="visually-hidden">Search users</label>
+  <input
+    id="search"
+    type="search"
+    placeholder="Search name or email…"
+    autocomplete="off"
+    [formControl]="search"
+  />
+
+  @if (error(); as message) {
+    <div class="alert" role="alert">
+      <span>{{ message }}</span>
+      <button type="button" class="link" (click)="retry()">Retry</button>
+    </div>
+  }
+
+  @if (page(); as p) {
+    @if (p.data.length === 0) {
+      <p class="muted empty">No users match “{{ query().q }}”.</p>
+    } @else {
+      <ul class="users" [class.stale]="loading()">
+        @for (u of p.data; track u.id) {
+          <li>
+            <a [routerLink]="['/users', u.id]" class="user">
+              <span class="avatar" aria-hidden="true">{{ u.name.charAt(0) }}</span>
+              <span class="who">
+                <strong>{{ u.name }}</strong>
+                <span class="muted">{{ u.email }}</span>
+              </span>
+              <span class="where muted">{{ u.address.city }} · {{ u.company.name }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+
+      @if (p.pages > 1) {
+        <nav class="pager" aria-label="Pagination">
+          <button
+            type="button"
+            class="button secondary"
+            [disabled]="!p.prev"
+            (click)="goTo(p.prev!)"
+          >
+            ← Previous
+          </button>
+          <span class="muted">Page {{ query().page }} of {{ p.pages }}</span>
+          <button
+            type="button"
+            class="button secondary"
+            [disabled]="!p.next"
+            (click)="goTo(p.next!)"
+          >
+            Next →
+          </button>
+        </nav>
+      }
+    }
+  } @else if (loading()) {
+    <p class="muted empty">Loading users…</p>
+  }
+</section>

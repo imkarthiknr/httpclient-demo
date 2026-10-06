@@ -1,0 +1,97 @@
+<a routerLink="/users" class="back">← All users</a>
+
+@if (loadError(); as message) {
+  <div class="card alert" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" class="link" (click)="reload()">Retry</button>
+  </div>
+} @else if (user(); as u) {
+  <section class="card profile" [class.stale]="loading()">
+    <span class="avatar" aria-hidden="true">{{ u.name.charAt(0) }}</span>
+    <div>
+      <h2>{{ u.name }}</h2>
+      <p class="muted">&#64;{{ u.username }} · {{ u.email }}</p>
+      <p class="muted">{{ u.address.city }} · {{ u.company.name }}</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>New post</h3>
+    <form [formGroup]="newPost" (ngSubmit)="createPost()" novalidate>
+      <label for="title">Title</label>
+      <input
+        id="title"
+        formControlName="title"
+        [attr.aria-invalid]="newPost.controls.title.invalid && newPost.controls.title.touched"
+      />
+      @if (newPost.controls.title.invalid && newPost.controls.title.touched) {
+        <p class="field-error">A title is required (max 120 characters).</p>
+      }
+      <label for="body">Body</label>
+      <textarea
+        id="body"
+        rows="3"
+        formControlName="body"
+        [attr.aria-invalid]="newPost.controls.body.invalid && newPost.controls.body.touched"
+      ></textarea>
+      @if (newPost.controls.body.invalid && newPost.controls.body.touched) {
+        <p class="field-error">A body is required (max 2000 characters).</p>
+      }
+      <button type="submit" class="button" [disabled]="saving()">
+        {{ saving() ? 'Publishing…' : 'Publish' }}
+      </button>
+    </form>
+  </section>
+
+  @if (actionError(); as message) {
+    <div class="alert" role="alert">{{ message }}</div>
+  }
+
+  <section class="card">
+    <h3>
+      Posts <span class="muted">({{ posts().length }})</span>
+    </h3>
+    @if (posts().length === 0) {
+      <p class="muted">No posts yet.</p>
+    }
+    <ul class="posts">
+      @for (p of posts(); track p.id) {
+        <li class="post">
+          @if (editingId() === p.id) {
+            <form class="edit" (submit)="$event.preventDefault(); saveEdit(p)">
+              <label class="visually-hidden" [for]="'edit-' + p.id">Post title</label>
+              <input [id]="'edit-' + p.id" [formControl]="editTitle" />
+              <button type="submit" class="link" [disabled]="editTitle.invalid">Save</button>
+              <button type="button" class="link" (click)="cancelEdit()">Cancel</button>
+            </form>
+          } @else {
+            <div class="post-head">
+              <strong>{{ p.title }}</strong>
+              <span class="post-actions">
+                <button
+                  type="button"
+                  class="link"
+                  [attr.aria-label]="'Edit ' + p.title"
+                  (click)="startEdit(p)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="link danger"
+                  [attr.aria-label]="'Delete ' + p.title"
+                  (click)="deletePost(p)"
+                >
+                  Delete
+                </button>
+              </span>
+            </div>
+          }
+          <p>{{ p.body }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+} @else if (loading()) {
+  <p class="muted">Loading…</p>
+}
